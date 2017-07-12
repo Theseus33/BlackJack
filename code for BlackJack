@@ -1,0 +1,17 @@
+
+
+//storing two random scores
+function twoRandomScores() {
+ var score1;
+ var score2;
+}
+
+
+
+//get a random number between 1 and 52
+randomScore = Math.floor(Math.random()*52);
+console.log("I got the score " + randomScore);
+
+//since a deck of cards has 52 cards and each suit has 13 cards each we can assign
+//1-13 as diamonds 14-26 as clubs 27-39 as hearts and 40-52 as spades
+
