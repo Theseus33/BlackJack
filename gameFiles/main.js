@@ -57,19 +57,29 @@ function Hand() {
 Hand.prototype.worth = function() {
   var total = 0;
   var ace = false;
-var current = this.currentCards;
-for(i=0;i < current.length; i++) {
-  total += card.value();
-    }
-    if (card.value() === 11) {
+  var current = this.currentCards;
+  for(i=0;i < current.length; i++) {
+    total += card.value();
+  }
+  if (card.value() === 11) {
       aces += 1;
-    }
-    while (aces > 0 && sum > 21) {
+  }
+  while (aces > 0 && total > 21) {
       total -= 10;
       aces--;
-    }
-    return total;
+  }
+  return total;
+};
+
+//functionality for Hit
+Hand.prototype.hit = function() {
+  var newCard = BlackJack.deal();
+    this.currentCards.push(newCard);
+    return newCard;
   };
+
+  return Hand;
+
 
 
 
