@@ -1,10 +1,30 @@
-//creating arrays for cards within the deck
-var suits =['diamonds', 'clubs', 'hearts', 'spades']
-var cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 
 //Giving the cards a numerical value - face cards should be worth 10
 // and ace would be worth either 1 or 11 depending on the current
 //total value of the players hand
+
+function makeDeck() {
+var suits =['diamonds', 'clubs', 'hearts', 'spades']
+var cards = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King']
+  var deck =[];
+  //use i by default fo for populating the hand with cards
+  for(var i= 0; i < cards.length; i++) {
+  //useing s to signify suits
+        for(var s = 0; s < 4; s++) {
+  //to get the value of the card
+            for(var val = 0; val < 13; val++) {
+                var cardValue = val++;
+                if(cardValue >= 11 && cardValue <=13) {
+                    cardValue = 10;
+                } else if (cardValue === 1) {
+                    cardValue = 11;
+                }
+                deck.push({'val': cardValue, 'name': cardNames[val], 'suit': suit + 1});
+            }
+        }
+    }
+};
+
 
 
 
@@ -13,6 +33,7 @@ var cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 
 
 ===============================================================================
+/*
 // Our deal function will return a random card
 var deal = function() {
   card = Math.floor(Math.random()*52+1);
@@ -46,3 +67,4 @@ function score() {
 
 console.log("You have cards " + card1 + " and " + card2 +
         " for a score of " + score(card1, card2));
+        */
