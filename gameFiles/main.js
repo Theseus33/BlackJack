@@ -33,7 +33,9 @@ Card.prototype.cardShow = function() {
 Card.prototype.cardSuit = function() {
   return BlackJack.suits[this.suit];
 }
-
+//takes it by array number adding 1 to get card values for non face cards
+//giving cards 10 and above the value of 10. Ace might be better handled
+//while calculating hand worth.
 Card.prototype.cardVal = function() {
   if(this.number ===0) {
     return 11;
@@ -42,6 +44,31 @@ Card.prototype.cardVal = function() {
   } else {
     return 10;
   }
+  };
+
+//this part will deal with intial dealing of two cards as well as getting the
+//value of the cards within the hand
+function Hand() {
+  this.cardOne = BlackJack.deal();
+  this.cardTwo = BlackJack.deal();
+};
+//get the current value of the cards in hand
+//making account of ace = both 1 and 11 dependant on hand total
+Hand.prototype.worth = function() {
+  var total = 0;
+  var ace = false;
+var current = this.currentCards;
+for(i=0;i < current.length; i++) {
+  total += card.value();
+    }
+    if (card.value() === 11) {
+      aces += 1;
+    }
+    while (aces > 0 && sum > 21) {
+      total -= 10;
+      aces--;
+    }
+    return total;
   };
 
 
