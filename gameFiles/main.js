@@ -16,55 +16,39 @@ var cards = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen
                 var cardValue = val++;
                 if(cardValue >= 11 && cardValue <=13) {
                     cardValue = 10;
-                } else if (cardValue === 1) {
+                } else if (cardValue === 1 ) {
                     cardValue = 11;
                 }
-                deck.push({'val': cardValue, 'name': cardNames[val], 'suit': suit + 1});
+  //this should push the value of the card the suit and number/face worth
+                deck.push({'val': cards[i], 'name': cards[val], 'suit': suits[s]});
             }
         }
     }
 };
 
+function randomizeDeck() {
+Math.floor.Math.random*52
 
-
-
-
-
-
-
-===============================================================================
-/*
-// Our deal function will return a random card
-var deal = function() {
-  card = Math.floor(Math.random()*52+1);
-  return card;
-};
-
-// Deal out our first hand
-var card1 = deal();
-var card2 = deal();
-
-// This function takes a card as a parameter and returns the value
-// of that card
-var getValue = function(card) {
-  // if its a face card, number should be set to 10
-  if (card%13 > 10) {
-        return  10;
-    }
-  // What if it's an ace?
-    else if (card % 13 === 1){
-        return 11;
-  // Otherwise, we just want its number value
-}
-else {
-    return card %13;
-}
-}
-// Score the hand
-function score() {
-  return getValue(card1) + getValue(card2);
 }
 
-console.log("You have cards " + card1 + " and " + card2 +
-        " for a score of " + score(card1, card2));
-        */
+//debating whether or not to add a betting aspect at this time but win/lose
+//will have to do for now
+
+//deals two cards to player and 2 to the dealer
+var dealer = [];
+var player = [];
+
+function deal(){
+
+        for(var i = 0; i < 2; i++){
+                var card = deck.pop();
+                player[i].push(card);
+                deealer[i].push(card);
+                dealCard(card, i);
+
+            }
+        };
+
+
+
+
