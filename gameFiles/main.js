@@ -6,24 +6,24 @@
 //my initial shuffle function would keep adding to the deck or make doubles
 
 var suits =['diamonds', 'clubs', 'hearts', 'spades'];
-var cards = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
+var cards = ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king'];
 var deck = [];
 var player = [];
 var dealer = [];
 var playerBox = document.getElementById('playerBox');
 var dealerBox = document.getElementById('dealerBox');
-var newCard = document.createElement('img');
+var makeImg = document.createElement('img');
 
 //generates a deck of 52 cards from the suits and cards arrays above
 function createDeck() {
   for(var i=0;i<cards.length;i++) {
     for(var j=0; j< suits.length; j++) {
-        var worth = parseInt(cards[i]);
-          if(worth ===1) {
-           worth =11;
-          } else if (worth > 1 && worth < 10){
-          worth = worth++;
-          } else {
+        var value = parseInt(cards[i]);
+          if(cards[i] =='ace') {
+           var worth = 11;
+          } else if (value > 1 && value < 10){
+          worth = value++;
+          } else if(value >= 10) {
           worth =10;
           }
         var card = {
@@ -32,10 +32,24 @@ function createDeck() {
           Worth: worth,
           Image: 'cards/' + cards[i] + '_of_' + suits[j] + '.png'};
         deck.push(card);
-
     }
   }
 }
+
+// function cardValue() {
+//   for(k=0;k<deck.length;k++){
+//     var worth = parseInt(cards[k]);
+//       if(cards[k] ===0) {
+//       worth =11;
+//       } else if (worth > 1 && worth < 10){
+//       worth = worth++;
+//       } else {
+//       worth =10;
+//       }
+//       card[i].value = card[k].worth;
+//   }
+//   return card;
+// }
 
 //fischer yates shuffle as suggested by Raj
 //https://bost.ocks.org/mike/shuffle/
@@ -61,44 +75,65 @@ function shuffle(deck) {
 //return cutDeck;
 
 //had deal as one big function got suggestion to seperate it
+//also tried the pop push which was just more lines first
 function dealPlayer() {
   if (deck.length > 0) {
-    let card = deck.shift();
-    let img = document.createElement('img');
-    img.src = card.Image;
-    playerBox.append(img);
-    player.push(card);
+    let newCard = deck.shift();
+    let image = document.createElement('img');
+    image.src = newCard.Image;
+    playerBox.append(image);
+    player.push(newCard);
   }
 }
 
 function dealDealer() {
   if (deck.length > 0) {
-    let card = deck.shift();
-    let img = document.createElement('img');
-    img.src = card.Image;
-    dealerBox.append(img);
-    dealer.push(card);
+    let newCard = deck.shift();
+    let image = document.createElement('img');
+    image.src = newCard.Image;
+    dealerBox.append(image);
+    dealer.push(newCard);
   }
 }
 
 function dealerScore() {
 var dealerTotal =0;
-  for(d= 0; d< dealer.length; d++){
-  dealerTotal += dealer[d].Worth;
+console.log(dealer.length);
+  for ( i = 0; i < dealer.length; i++) {
+      if (dealer[i].card == 'ace') {
+        dealer[i].Worth = 1;
+        dealerTotal += dealer[i].Worth;
+      } else {
+      dealerTotal += dealer[i].Worth;
+      }
+    }
+  return dealerTotal;
   }
-  console.log(dealerTotal);
-}
 
 function playerScore() {
-var playerTotal =0;
-  for(p= 0; p< player.length; p++){
-  playerTotal += player[p].Worth;
-  }
-  console.log(playerTotal);
+var playerTotals =0;
+console.log(player.length);
+  for ( i =0; i < player.length; i++) {
+    if (player[i].card =='ace') {
+        player[i].Worth = 1;
+        playerTotals += player[i].Worth;
+        } else {
+        playerTotals += player[i].Worth;
+        }
+    }
+  return playerTotals;
 }
 
+// function clear() {
+//   deck = '';
+//   player='';
+//   dealer='';
+//   dealerTotal='';
+//   playerTotal='';
+// }
+
 function deal(){
-document.getElementById("deal").onclick = function() {
+  document.getElementById("deal").onclick = function() {
   this.disabled = true;
   this.style.visibility = "hidden";
   }
@@ -124,13 +159,49 @@ document.getElementById("deal").onclick = function() {
  }
 
 function hitDealer(){
-  if(player.length < 5){
+  if(dealer.length < 5){
   dealDealer();
-
-
   }
 }
 
+
+
 function stand() {
-  console.log(dealerTotal)
+  checkWin();
+  checkWinner();
 }
+
+function checkWin(){
+let dealerTotal =dealerScore();
+  for(i=0;i<dealer.length;i++){
+    if (dealer.length <5 && dealerTotal < 17) {
+      hitDealer();
+    }
+  }
+}
+
+function checkWinner(){
+  let playerTotal = playerScore();
+  let dealerTotal =dealerScore();
+  var messageSpan = document.getElementById('messageSpan');
+  if (playerTotal < 21 && dealerTotal < 21 && !stand) {
+      messageSpan.innerText = `Dealer Wins!`;
+      console.log('Dealer Wins!');
+    } if (dealerTotal > 21 && playerTotal > 21) {
+      rmessageSpan.innerText = `Dealer Wins!`;
+      console.log('Dealer Wins!');
+    } if (playerTotal === 21) {
+      messageSpan.innerText = `Blackjack`;
+      console.log('Blackjack!');
+    } if (dealerTotal > 21 && playerTotal < 21) {
+      messageSpan.innerText = `You Win Dealer Busts!`;
+      console.log('You Win Dealer Busts!!');
+    } if (playerTotal < 21 && playerTotal > dealerTotal) {
+      messageSpan.innerText = `You Win!`
+      console.log('You Win!')
+    } if (playerTotal === dealerTotal) {
+      messageSpan.innerText = `Tie`
+      console.log('Tie!')
+    }
+      messageSpan.innerText = `Sorry You Lose!`
+  }
