@@ -65,17 +65,17 @@ function Hand() {
 //making account of ace = both 1 and 11 dependant on hand total
 Hand.prototype.worth = function() {
   var total = 0;
-  var ace = false;
+  var ace = deck[0];
   var current = this.currentCards;
   for(i=0;i < current.length; i++) {
     total += card.value();
   }
   if (card.value() === 11) {
-      aces += 1;
+      ace += 1;
   }
-  while (aces > 0 && total > 21) {
+  while (ace > 0 && total > 21) {
       total -= 10;
-      aces--;
+      ace--;
   }
   return total;
 };

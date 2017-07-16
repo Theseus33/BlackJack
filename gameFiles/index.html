@@ -9,15 +9,15 @@
   <link rel="stylesheet" href="">
 </head>
 <body>
-<div class="dealerBox">dealer</div>
+<div class="dealerBox" id='dealerBox'></div>
 <div class="message">
-<p class="msg messageSpan" id='messageSpan'></p>
+<p class="msg messageSpan slideInUp animated" id='messageSpan'></p>
 </div>
-<div class="playerBox" id='playerBox'>player</div>
+<div class="playerBox" id='playerBox'></div>
 <div class="options">
-<button type="button" class="btn" id="hit">Hit Me</button>
-<button type="button" class="btn" id ="stand">Stand</button>
-<button type="button" class="btn" id ="deal">Deal</button>
+<button type="button" class="btn" id="hit" onclick="hit()">Hit Me</button>
+<button type="button" class="btn" id ="stand" onclick="stand()">Stand</button>
+<button type="button" class="btn" id ="deal" onclick="deal()" button.style.display = 'none';>Deal</button>
 </div>
 <script type="text/javascript" src="main.js">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
