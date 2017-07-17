@@ -13,6 +13,7 @@ var dealer = [];
 var playerBox = document.getElementById('playerBox');
 var dealerBox = document.getElementById('dealerBox');
 var makeImg = document.createElement('img');
+var buttonSwitch =1;
 
 //generates a deck of 52 cards from the suits and cards arrays above
 function createDeck() {
@@ -124,42 +125,50 @@ console.log(player.length);
   return playerTotals;
 }
 
-// function clear() {
-//   deck = '';
-//   player='';
-//   dealer='';
-//   dealerTotal='';
-//   playerTotal='';
+
+//failed toggle button for deal/newGame
+// $("deal").on("click", deal);
+
+// function switchBtn() {
+//     if ( action == 1 ) {
+//        deal();
+//         action = 2;
+//     } else {
+//         newGame();
+//         action = 1;
+//     }
 // }
 
+
 function deal(){
-  document.getElementById("deal").onclick = function() {
-  this.disabled = true;
-  this.style.visibility = "hidden";
-  }
   createDeck();
   shuffle(deck)
   dealPlayer();
   dealDealer();
   dealPlayer();
   dealDealer();
+  document.getElementById("deal").disabled = true;
 }
 
 
  function hit(){
-  if(player.length < 5){
-  dealPlayer();
+  let dealerTotal =dealerScore();
+  if(player.length < 5 && dealerTotal <21 ){
+    dealPlayer();
   } else {
     document.getElementById("hit").onclick = function() {
     this.disabled = true;
-    this.style.visibility = "hidden";
     }
-
+      checkWin();
+      checkWinner();
   }
- }
+
+}
+
 
 function hitDealer(){
-  if(dealer.length < 5){
+  let dealerTotal =dealerScore();
+  if(dealer.length < 5 && dealerTotal < 17){
   dealDealer();
   }
 }
@@ -172,9 +181,9 @@ function stand() {
 }
 
 function checkWin(){
-let dealerTotal =dealerScore();
-  for(i=0;i<dealer.length;i++){
-    if (dealer.length <5 && dealerTotal < 17) {
+let dealerTotal = dealerScore();
+  for(i=0; i < dealer.length; i++){
+    if (dealer.length < 5 && dealerTotal < 17){
       hitDealer();
     }
   }
@@ -185,23 +194,36 @@ function checkWinner(){
   let dealerTotal =dealerScore();
   var messageSpan = document.getElementById('messageSpan');
   if (playerTotal < 21 && dealerTotal < 21 && !stand) {
-      messageSpan.innerText = `Dealer Wins!`;
+      messageSpan.innerText = `${playerTotal} to ${dealerTotal} Dealer Wins!`;
       console.log('Dealer Wins!');
     } if (dealerTotal > 21 && playerTotal > 21) {
-      rmessageSpan.innerText = `Dealer Wins!`;
+      rmessageSpan.innerText = `${playerTotal} to ${dealerTotal} Dealer Wins!`;
       console.log('Dealer Wins!');
     } if (playerTotal === 21) {
-      messageSpan.innerText = `Blackjack`;
+      messageSpan.innerText = `${playerTotal} to ${dealerTotal} Blackjack`;
       console.log('Blackjack!');
     } if (dealerTotal > 21 && playerTotal < 21) {
-      messageSpan.innerText = `You Win Dealer Busts!`;
+      messageSpan.innerText = `${playerTotal} to ${dealerTotal} You Win Dealer Busts!`;
       console.log('You Win Dealer Busts!!');
     } if (playerTotal < 21 && playerTotal > dealerTotal) {
-      messageSpan.innerText = `You Win!`
+      messageSpan.innerText = `${playerTotal} to ${dealerTotal} You Win!`
       console.log('You Win!')
     } if (playerTotal === dealerTotal) {
-      messageSpan.innerText = `Tie`
+      messageSpan.innerText = `${playerTotal} to ${dealerTotal} Tie!`
       console.log('Tie!')
     }
-      messageSpan.innerText = `Sorry You Lose!`
+  }
+
+
+
+  function newGame() {
+    document.getElementById("deal").disabled = false;
+    var messageSpan = document.getElementById('messageSpan');
+    dealer=[];
+    player=[];
+    dealerTotal = 0;
+    playerTotals = 0;
+    dealerBox.innerHTML= '';
+    playerBox.innerHTML= '';
+    messageSpan.innerText= `Lets Play!`
   }
