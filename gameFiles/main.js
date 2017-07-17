@@ -201,9 +201,12 @@ function checkWinner(){
     } if (dealerTotal > 21 && playerTotal > 21) {
       rmessageSpan.innerText = `${playerTotal} to ${dealerTotal} Dealer Wins!`;
       console.log('Dealer Wins!');
+      } if (dealerTotal === 21) {
+      rmessageSpan.innerText = `${playerTotal} to ${dealerTotal} Dealer Wins!`;
+      console.log('Dealers Blackjack!');
     } if (playerTotal === 21) {
       messageSpan.innerText = `${playerTotal} to ${dealerTotal} Blackjack`;
-      console.log('Blackjack!');
+      console.log('Blackjack! You Win!');
     } if (dealerTotal > 21 && playerTotal < 21) {
       messageSpan.innerText = `${playerTotal} to ${dealerTotal} You Win Dealer Busts!`;
       console.log('You Win Dealer Busts!!');
