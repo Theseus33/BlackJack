@@ -4,7 +4,7 @@ http://police-budget-28607.bitballoon.com/
 <img width="800" alt="screen" src="https://git.generalassemb.ly/storage/user/7100/files/86d95c40-6acd-11e7-9f3d-7b174d66f0bc">
 
 
-##What is BlackJack?
+## What is BlackJack?
 
 From the dawn of time man has attempted to count to 21.
 With inventions slowly progressing towards that achievemnent,
@@ -18,14 +18,14 @@ Reach a final score higher than the dealer without exceeding 21; or
 Let the dealer draw additional cards until their hand exceeds 21.
 -wikipedia
 
-##Technical Discussion
+## Technical Discussion
 
 List of the technologies you're using (HTML, CSS, JavaScript)
 HTML 
 CSS
 JAVASCRIPT
 
-##Code samples, description of challenges you overcame, etc.
+## Code samples, description of challenges you overcame, etc.
 ```
 function dealerScore() {
 var dealerTotal =0;
@@ -41,12 +41,12 @@ console.log(dealer.length);
   return dealerTotal;
   }
 ```
-##Any credits or notes you feel you should add
+## Any credits or notes you feel you should add
 Credit to Raj Bennin for help with the logic. Stack overflow for so many things.
 Need to fix the scoring and I would have liked to add betting to it but got stuck 
 on the scoring logic.
 
-##If you had more time to work on your game, what would you do?
+## If you had more time to work on your game, what would you do?
 add animation to the cards
 fix scoring with the ace 
 add betting and a load in screen.
