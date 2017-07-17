@@ -27,18 +27,32 @@ JAVASCRIPT
 
 ## Code samples, description of challenges you overcame, etc.
 ```
-function dealerScore() {
-var dealerTotal =0;
-console.log(dealer.length);
-  for ( i = 0; i < dealer.length; i++) {
-      if (dealer[i].card == 'ace') {
-        dealer[i].Worth = 1;
-        dealerTotal += dealer[i].Worth;
-      } else {
-      dealerTotal += dealer[i].Worth;
-      }
+function checkWinner(){
+  let playerTotal = playerScore();
+  let dealerTotal =dealerScore();
+  var messageSpan = document.getElementById('messageSpan');
+  if (playerTotal < 21 && dealerTotal < 21 && playerTotal < dealerTotal) {
+      messageSpan.innerText = `${playerTotal} to ${dealerTotal} Dealer Wins!`;
+      console.log('Dealer Wins!');
+    } if (dealerTotal > 21 && playerTotal > 21) {
+      rmessageSpan.innerText = `${playerTotal} to ${dealerTotal} Dealer Wins!`;
+      console.log('Dealer Wins!');
+      } if (dealerTotal === 21) {
+      rmessageSpan.innerText = `${playerTotal} to ${dealerTotal} Dealer Wins!`;
+      console.log('Dealers Blackjack!');
+    } if (playerTotal === 21) {
+      messageSpan.innerText = `${playerTotal} to ${dealerTotal} Blackjack`;
+      console.log('Blackjack! You Win!');
+    } if (dealerTotal > 21 && playerTotal < 21) {
+      messageSpan.innerText = `${playerTotal} to ${dealerTotal} You Win Dealer Busts!`;
+      console.log('You Win Dealer Busts!!');
+    } if (playerTotal < 21 && playerTotal > dealerTotal) {
+      messageSpan.innerText = `${playerTotal} to ${dealerTotal} You Win!`
+      console.log('You Win!')
+    } if (playerTotal === dealerTotal) {
+      messageSpan.innerText = `${playerTotal} to ${dealerTotal} Tie!`
+      console.log('Tie!')
     }
-  return dealerTotal;
   }
 ```
 ## Any credits or notes you feel you should add

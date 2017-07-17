@@ -147,7 +147,6 @@ function deal(){
   dealDealer();
   dealPlayer();
   dealDealer();
-  checkWinner();
   document.getElementById("deal").disabled = true;
 }
 
