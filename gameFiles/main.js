@@ -101,7 +101,7 @@ function dealerScore() {
 var dealerTotal =0;
 console.log(dealer.length);
   for ( i = 0; i < dealer.length; i++) {
-      if (dealer[i].card == 'ace') {
+      if (dealer[i].card == 'ace' && dealerTotal >= 21) {
         dealer[i].Worth = 1;
         dealerTotal += dealer[i].Worth;
       } else {
@@ -147,6 +147,7 @@ function deal(){
   dealDealer();
   dealPlayer();
   dealDealer();
+  checkWinner();
   document.getElementById("deal").disabled = true;
 }
 
@@ -168,7 +169,7 @@ function deal(){
 
 function hitDealer(){
   let dealerTotal =dealerScore();
-  if(dealer.length < 5 && dealerTotal < 17){
+  if(dealer.length < 5){
   dealDealer();
   }
 }
@@ -183,7 +184,8 @@ function stand() {
 function checkWin(){
 let dealerTotal = dealerScore();
   for(i=0; i < dealer.length; i++){
-    if (dealer.length < 5 && dealerTotal < 17){
+    if (i < 5 && dealerTotal < 17){
+      console.log('whatever')
       hitDealer();
     }
   }
@@ -193,7 +195,7 @@ function checkWinner(){
   let playerTotal = playerScore();
   let dealerTotal =dealerScore();
   var messageSpan = document.getElementById('messageSpan');
-  if (playerTotal < 21 && dealerTotal < 21 && !stand) {
+  if (playerTotal < 21 && dealerTotal < 21 && playerTotal < dealerTotal) {
       messageSpan.innerText = `${playerTotal} to ${dealerTotal} Dealer Wins!`;
       console.log('Dealer Wins!');
     } if (dealerTotal > 21 && playerTotal > 21) {

@@ -8,7 +8,8 @@ http://police-budget-28607.bitballoon.com/
 
 From the dawn of time man has attempted to count to 21.
 With inventions slowly progressing towards that achievemnent,
-first fire, then the wheel, then blackjack. 
+first fire, then the wheel, then blackjack. Little known fact
+that cavemen used to gamble with shells.
 
 Blackjack, also known as twenty-one, is the most widely played casino banking game in the world.[1] Blackjack is a comparing card game between a player and dealer, meaning players compete against the dealer but not against other players. It is played with one or more decks of 52 cards. The objective of the game is to beat the dealer in one of the following ways:
 
